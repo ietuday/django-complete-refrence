@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.views.generic import TemplateView
 
 from .models import Choice, Question
 
@@ -55,4 +56,11 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+def index(request):  
+    return render(request,'index.html')   
+
+class IndexView(TemplateView):
+    template_name = "react/index.html"
+
+    
 
